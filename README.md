@@ -1,3 +1,28 @@
+> 🙋 **이 레포는 팀 프로젝트 [FIo-g/BoPok](https://github.com/FIo-g/BoPok)의 Fork입니다.**
+> 저(김경선, [@gyeongseon-k](https://github.com/gyeongseon-k))는 서비스 아이디어를 제안하고, 기능명세서와 **계정·그룹·여행·버전·의견 백엔드**를 맡았습니다.
+> 📄 회고와 트러블슈팅 자세히 보기: 노션 포트폴리오 (정리 후 링크 추가 예정)
+
+## 🙋 내가 맡은 부분
+
+| 영역 | 한 일 | PR |
+| --- | --- | --- |
+| 🔐 로그인·권한 | Better Auth 가입·로그인, 모든 API가 거치는 권한 함수 `requireUser` · `requireMember` · `requireOwner` | [#2](https://github.com/FIo-g/BoPok/pull/2) |
+| 👨‍👩‍👧 가족 데이터 | 그룹·7일 초대 링크, 여행·여행자, 일정 버전 저장, 장소별 의견, 확정, 공유 글 API | [#11](https://github.com/FIo-g/BoPok/pull/11) |
+| 📊 판정 요약 | 일정 저장 때 걷는 시간 요약을 함께 저장, 여행자 조건이 바뀌면 다시 계산 | [#13](https://github.com/FIo-g/BoPok/pull/13) |
+| 📅 본선 추가 기능 | 여러 날 여행, 일차별 만족도, 그룹 채팅, "AI에게 전달하기" | #17 ~ #28 |
+
+## 🔧 트러블슈팅 요약
+
+- **외부 API가 느려도 일정 저장은 멈추지 않게**: TMAP이 느리거나 실패해도 저장은 항상 성공하도록 요약 계산에 8초 제한을 두고, 실패한 구간은 시간을 지어내지 않고 '경로 정보 없음'으로 표시
+- **배포 후 느린 화면 개선**: 권한 검사의 DB 조회 두 번을 join 한 번으로 합치고 세션 쿠키 캐시(5분)를 켬. 로그아웃이 최대 5분 늦게 반영되는 대가는 팀과 정하고 테스트로 기록
+- **채팅 글 누락 버그**: 내가 글을 보내면 그 사이 다른 가족의 글을 못 받던 문제를, 커서를 서버에서 받은 글로만 옮기도록 바꿔 해결
+
+## 📁 내 코드 위치
+
+`src/lib/auth` · `src/lib/trips` · `src/lib/db` · `src/app/api/groups` · `trips` · `versions` · `opinions`
+
+---
+
 <div align="center">
 
 # 🚶‍♀️ 보폭 · BoPok
